@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Access the key securely
-API_KEY = os.getenv("AIzaSyDPZwB30WIkPoPfsT9LdwxfJ0nMsZskcnc")
+API_KEY = os.getenv("")
 
 app = FastAPI(title="AI Portfolio Backend", version="1.0.0")
 
