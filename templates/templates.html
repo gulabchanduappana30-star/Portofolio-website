@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gen AI & Agentic AI Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#111827',
+                        accent: '#8b5cf6' // Changed to purple for an AI/Future vibe
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+
+        .dark body {
+            background-color: #030712;
+            color: #f3f4f6;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #8b5cf6;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .skill-tag {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: default;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-3px) scale(1.05);
+            background-color: #8b5cf6;
+            color: white;
+            border-color: #8b5cf6;
+            box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.3);
+        }
+
+        .project-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0,0,0,0.05);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dark .project-card {
+            border-color: rgba(255,255,255,0.05);
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px);
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: 0 30px 60px -12px rgba(0,0,0,0.15);
+        }
+
+        .dark .project-card:hover {
+            box-shadow: 0 30px 60px -12px rgba(0,0,0,0.5);
+            background-color: rgba(17, 24, 39, 0.8);
+        }
+
+        .project-card:hover .icon-box {
+            transform: scale(1.1) rotate(5deg);
+            background-color: #8b5cf6;
+            color: white;
+        }
+
+        #profile-pic {
+            transition: all 1s ease;
+        }
+        
+        .group:hover #profile-pic {
+            transform: scale(1.1);
+            filter: grayscale(0);
+        }
+
+        .mode-tag {
+            font-size: 9px;
+            padding: 3px 10px;
+            border-radius: 99px;
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+        }
+
+        /* AI Glitch Effect for Title */
+        .ai-title {
+            background: linear-gradient(to right, #8b5cf6, #d946ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="transition-colors duration-500">
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="#home" class="font-bold tracking-tighter text-xl uppercase text-gray-900 dark:text-white">AI<span class="text-accent">.</span>AGENT</a>
+            
+            <nav class="hidden md:flex items-center space-x-10 text-sm font-semibold text-gray-400">
+                <a href="#home" class="nav-link hover:text-gray-900 dark:hover:text-white">HOME</a>
+                <a href="#about" class="nav-link hover:text-gray-900 dark:hover:text-white">RESEARCH</a>
+                <a href="#projects" class="nav-link hover:text-gray-900 dark:hover:text-white">AGENTS</a>
+                <a href="#contact" class="nav-link hover:text-gray-900 dark:hover:text-white">CONTACT</a>
+                <button id="theme-toggle" class="p-2 rounded-xl bg-gray-100 dark:bg-gray-900 transition-colors">
+                    <i data-lucide="moon" id="theme-icon" class="w-4 h-4"></i>
+                </button>
+            </nav>
+
+            <button class="md:hidden" id="mobile-toggle"><i data-lucide="menu"></i></button>
+        </div>
+    </header>
+
+    <!-- Page 1: Home -->
+    <section id="home" class="min-h-screen flex items-center pt-20">
+        <div class="max-w-6xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center">
+            
+            <div class="reveal">
+                <h2 class="text-accent font-black tracking-[0.3em] text-xs uppercase mb-6">Pursuing Intelligence</h2>
+                <h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-8 leading-[0.9] text-gray-900 dark:text-white">
+                    Gen AI & <br/><span class="ai-title">Agentic AI.</span>
+                </h1>
+                <p class="text-lg text-gray-500 dark:text-gray-400 mb-10 max-w-md leading-relaxed">
+                    Exploring the frontier of Large Language Models and Autonomous Agents. I specialize in building systems that don't just generate text, but take action.
+                </p>
+                <div class="flex items-center gap-8">
+                    <a href="#projects" class="group flex items-center gap-3 font-bold text-sm tracking-widest uppercase border-b-2 border-accent pb-1 hover:text-accent transition-all text-gray-900 dark:text-white">
+                        View My Agents <i data-lucide="bot" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="reveal delay-200 flex justify-center md:justify-end">
+                <div class="relative group cursor-pointer">
+                    <!-- Modern Image Filter for AI specialist -->
+                    <div class="w-48 h-64 md:w-56 md:h-72 rounded-2xl overflow-hidden shadow-2xl bg-gray-200 dark:bg-gray-800 border-4 border-white dark:border-gray-900 transition-transform duration-500 group-hover:-rotate-2 group-hover:border-accent">
+                        <img id="profile-pic" 
+                             src="/static/images/profile.jpg" 
+                             alt="AI Specialist" 
+                             class="w-full h-full object-cover filter grayscale contrast-125">
+                    </div>
+                    <div class="absolute -bottom-4 -left-4 w-24 h-24 bg-accent/20 rounded-full -z-10 blur-2xl group-hover:bg-accent/40 transition-colors"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 2: Research & Skills -->
+    <section id="about" class="py-32 bg-gray-50 dark:bg-gray-950/50">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-20">
+            <div class="reveal">
+                <h3 class="text-3xl font-bold mb-8 text-gray-900 dark:text-white">Specialization</h3>
+                <p class="text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
+                    Focusing on LLM orchestration, prompt engineering, and autonomous agent frameworks. My goal is to bridge the gap between static AI models and dynamic, goal-oriented agents.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <span class="skill-tag px-4 py-2 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-lg text-xs font-bold uppercase tracking-widest text-gray-600 dark:text-gray-300">LLMs</span>
+                    <span class="skill-tag px-4 py-2 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-lg text-xs font-bold uppercase tracking-widest text-gray-600 dark:text-gray-300">LangChain</span>
+                    <span class="skill-tag px-4 py-2 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-lg text-xs font-bold uppercase tracking-widest text-gray-600 dark:text-gray-300">Prompt Eng.</span>
+                    <span class="skill-tag px-4 py-2 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-lg text-xs font-bold uppercase tracking-widest text-gray-600 dark:text-gray-300">Python</span>
+                    <span class="skill-tag px-4 py-2 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-lg text-xs font-bold uppercase tracking-widest text-gray-600 dark:text-gray-300">RAG</span>
+                    <span class="skill-tag px-4 py-2 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-lg text-xs font-bold uppercase tracking-widest text-gray-600 dark:text-gray-300">Agentic Workflows</span>
+                </div>
+            </div>
+            <div class="reveal delay-200">
+                <div class="p-8 bg-white dark:bg-gray-900 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-800 hover:border-accent/30 transition-colors h-full">
+                    <h4 class="font-bold mb-4 text-gray-900 dark:text-white">The Agentic Future</h4>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 leading-loose">
+                        I believe the next shift in tech isn't just about "chatting" with AI—it's about AI having the agency to browse, compute, and complete complex multi-step tasks autonomously.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 3: Projects -->
+    <section id="projects" class="py-32 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6 reveal">
+                <div>
+                    <h2 class="text-accent font-black tracking-[0.3em] text-xs uppercase mb-4">Portfolio</h2>
+                    <h3 class="text-4xl font-bold tracking-tighter text-gray-900 dark:text-white">AI Projects.</h3>
+                </div>
+                <p class="text-gray-400 text-sm max-w-xs">Building autonomous tools using LangChain, OpenAI, and custom Agentic frameworks.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- AI Chat Bot -->
+                <div class="project-card bg-white dark:bg-gray-900/50 p-10 rounded-[2.5rem] reveal">
+                    <div class="icon-box w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-8 transition-all duration-500">
+                        <i data-lucide="cpu" class="text-accent w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Multi-Persona AI Bot</h4>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-6">
+                        An advanced LLM implementation using prompt chains to adapt personality based on user interaction history.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="mode-tag">GPT-4o</span>
+                        <span class="mode-tag">Contextual Memory</span>
+                        <span class="mode-tag">Persona Engine</span>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <span class="text-[10px] font-bold uppercase tracking-widest opacity-50 text-gray-600 dark:text-gray-400">Python</span>
+                        <span class="text-[10px] font-bold uppercase tracking-widest opacity-50 text-gray-600 dark:text-gray-400">LangChain</span>
+                    </div>
+                </div>
+
+                <!-- ATS Agent -->
+                <div class="project-card bg-white dark:bg-gray-900/50 p-10 rounded-[2.5rem] reveal delay-200">
+                    <div class="icon-box w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center mb-8 transition-all duration-500">
+                        <i data-lucide="workflow" class="text-accent w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Agentic ATS Agent</h4>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-8">
+                        A RAG-based Applicant Tracking System that autonomously ranks candidates using semantic search and reasoning.
+                    </p>
+                    <div class="flex gap-4">
+                        <span class="text-[10px] font-bold uppercase tracking-widest opacity-50 text-gray-600 dark:text-gray-400">RAG</span>
+                        <span class="text-[10px] font-bold uppercase tracking-widest opacity-50 text-gray-600 dark:text-gray-400">VectorDB</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 4: Contact -->
+    <section id="contact" class="py-32 bg-gray-50 dark:bg-gray-950/50 px-6 border-t border-gray-100 dark:border-gray-900">
+        <div class="max-w-4xl mx-auto">
+            <div class="reveal text-center mb-16">
+                <h2 class="text-accent font-black tracking-[0.3em] text-xs uppercase mb-4">Inquiries</h2>
+                <h3 class="text-4xl font-bold tracking-tighter text-gray-900 dark:text-white">Let's build the future.</h3>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 reveal">
+                <!-- Email Card -->
+                <div class="p-8 bg-white dark:bg-gray-900 rounded-3xl border border-gray-100 dark:border-gray-800 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-xl transition-all group">
+                    <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent transition-colors">
+                        <i data-lucide="mail" class="text-accent w-5 h-5 group-hover:text-white"></i>
+                    </div>
+                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Email Me</p>
+                    <a href="mailto:gulabchanduappana30@gmail.com" class="text-lg font-medium text-gray-900 dark:text-white hover:text-accent transition-colors mb-4">
+                        gulabchanduappana30@gmail.com
+                    </a>
+                    <button onclick="copyEmail()" class="text-[10px] font-bold uppercase tracking-[0.2em] px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all" id="copy-btn">
+                        Copy to Clipboard
+                    </button>
+                </div>
+
+                <!-- Socials Card -->
+                <div class="p-8 bg-white dark:bg-gray-900 rounded-3xl border border-gray-100 dark:border-gray-800 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-xl transition-all group">
+                    <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent transition-colors">
+                        <i data-lucide="share-2" class="text-accent w-5 h-5 group-hover:text-white"></i>
+                    </div>
+                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Network</p>
+                    <div class="flex gap-4">
+                        <!-- LINKEDIN LINK -->
+                        <a href="https://www.linkedin.com/in/gulabchandu-appana-b1a604377" target="_blank" rel="noopener noreferrer" class="p-3 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-[#0077B5] hover:text-white transition-all transform hover:-translate-y-1">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                        <!-- GITHUB LINK -->
+                        <a href="https://github.com/gulabchanduappana30-star" target="_blank" rel="noopener noreferrer" class="p-3 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-[#333] hover:text-white transition-all transform hover:-translate-y-1">
+                            <i data-lucide="github" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white dark:bg-gray-950 text-center">
+        <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">© 2024 AI SPECIALIST — INTELLIGENCE REDEFINED</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        const themeBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
+
+        themeBtn.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            themeIcon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+            lucide.createIcons();
+        });
+
+        function copyEmail() {
+            const email = "gulabchanduappana30@gmail.com";
+            const btn = document.getElementById('copy-btn');
+            const tempInput = document.createElement("input");
+            tempInput.value = email;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            const originalText = btn.innerText;
+            btn.innerText = "COPIED!";
+            btn.classList.add('text-accent', 'border-accent');
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.classList.remove('text-accent', 'border-accent');
+            }, 2000);
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
